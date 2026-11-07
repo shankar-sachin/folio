@@ -1,4 +1,4 @@
 # Stable direct-install link. Point it at the newest DMG when you ship a release.
-/download        /downloads/Folio-2.0.0-Apple-Silicon.dmg   302
-/download/mac    /downloads/Folio-2.0.0-Apple-Silicon.dmg   302
-/latest.dmg      /downloads/Folio-2.0.0-Apple-Silicon.dmg   302
+/download        /downloads/Folio-2.1.0-Apple-Silicon.dmg   302
+/download/mac    /downloads/Folio-2.1.0-Apple-Silicon.dmg   302
+/latest.dmg      /downloads/Folio-2.1.0-Apple-Silicon.dmg   302

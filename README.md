@@ -1,6 +1,6 @@
 # Folio
 
-A live-edit Markdown reader for macOS. Your notes render beautifully, and any block — a paragraph, heading, list, table or code fence — turns into its Markdown the moment you click it. Press <kbd>Esc</kbd> and it's back to the rendered page. Built with Tauri and Rust.
+A live-edit Markdown reader for macOS. Your notes render beautifully, and any block — a paragraph, heading, list, table or code fence — turns into its Markdown the moment you click it. Press <kbd>Esc</kbd> and it's back to the rendered page. Written in Rust (Tauri).
 
 ## What's inside
 
@@ -30,27 +30,29 @@ A live-edit Markdown reader for macOS. Your notes render beautifully, and any bl
 
 ## Build
 
-Requirements: Xcode Command Line Tools, Rust (stable), and Node packages `marked@14`, `dompurify@3`, `highlight.js@10`, `esbuild` (install with `npm install`).
+Requirements: Xcode Command Line Tools and Rust (stable). No Node, no npm, no bundler.
 
 ```bash
-npm install
 bash scripts/build.sh          # -> ../deliverables/Folio.app
 bash scripts/build.sh --dmg    # also writes a DMG
+CARGO_OFFLINE=1 bash scripts/build.sh   # build from the cargo cache only
 ```
 
-`scripts/build.sh` bundles `src-web/app.js` into `web/bundle.js`, builds the Rust host in `src-tauri/` (the web UI is embedded at compile time), and then assembles and ad-hoc signs `Folio.app`. You don't need the Tauri CLI. Set `FOLIO_OUTPUT` to choose where the app goes.
+`scripts/build.sh` builds the Rust app in `src-tauri/` (the web assets in `web/` are embedded at compile time), then assembles and ad-hoc signs `Folio.app`. You don't need the Tauri CLI. Set `FOLIO_OUTPUT` to choose where the app goes.
 
-The self-test (`Folio.app/Contents/MacOS/Folio --self-test <folder>`) writes its results to `$FOLIO_TEST_OUTPUT`.
+The self-test (`Folio.app/Contents/MacOS/Folio --self-test`) writes its results to `$FOLIO_TEST_OUTPUT`. `cargo test` in `folio-core/` runs the Markdown engine tests.
 
 Workspace state lives in `~/Library/Application Support/Folio/state.json`.
+
+## How it works
+
+Rust owns everything: documents, tabs, workspaces, the file tree, search, live editing, the command palette and settings. The UI is server-rendered HTML in the style of LiveView: Rust renders each region of the window, diffs it, and sends only the changed regions to the webview. A small generic script (`web/folio.js`) forwards clicks and keys to Rust and applies the patches; it has no app logic of its own.
 
 ## Layout
 
 ```
-src-tauri/   Rust host: file system, search, watcher, dialogs, menu, mdasset:// image scheme
-src-web/     Workbench UI source (explorer, tabs, live editor, palette, …)
-web/         Shipped frontend: index.html, style.css, bundle.js
-scripts/     bundle.sh, build.sh, Info.plist
+folio-core/  Markdown engine (no dependencies): GFM parser, safe HTML renderer, syntax highlighter, icons
+src-tauri/   The app: state, events, views, file system, search, watcher, dialogs, menu, mdasset:// images
+web/         index.html (window skeleton), style.css, folio.js (event/patch shim)
+scripts/     build.sh, Info.plist
 ```
-
-Third-party licenses (Marked, DOMPurify, highlight.js) are in `THIRD_PARTY/`.

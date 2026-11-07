@@ -1,0 +1,13 @@
+[package]
+name = "folio-core"
+version = "2.1.0"
+edition = "2021"
+description = "Folio's Markdown engine: GFM parsing, safe HTML rendering, syntax highlighting. No dependencies."
+publish = false
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

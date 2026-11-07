@@ -1,5 +1,7 @@
 node_modules/
 .build/
-src-tauri/target/
+target/
 src-tauri/gen/
 .DS_Store
+HANDOFF.md
+web/_dump-*.html
