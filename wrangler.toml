@@ -1,6 +1,6 @@
 # Cloudflare Pages: static site, no build step.
 #   Dashboard (Git):  build command = (none), build output directory = site
 #   CLI:              npx wrangler pages deploy
-name = "folio"
+name = "foliomd"
 pages_build_output_dir = "site"
 compatibility_date = "2026-11-01"
