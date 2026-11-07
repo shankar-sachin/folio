@@ -2456,20 +2456,22 @@ async function boot() {
 /* ───────────────────────── browser mock (for development in a normal browser) ───────────────────────── */
 
 function mock(action, p) {
-  const KEY = 'folio-mock-fs';
+  const KEY = 'folio-demo-fs-v2';
   const fs = mock.fs ||= JSON.parse(localStorage.getItem(KEY) || 'null') || {
-    '/Demo/README.md': '# Demo Project\n\nWelcome to the **demo** workspace. Open [the ideas list](docs/ideas.md) or the [guide](docs/guide.md#tables).\n\n> [!TIP]\n> Press ⌘P to jump to any file.\n\n- [x] Explorer\n- [x] Tabs\n- [ ] Write something wonderful\n',
-    '/Demo/docs/ideas.md': '# Ideas\n\n## Beginner\n\n| # | Idea | Audience | Views |\n|---|---|---|---|\n| 1 | Investigation Atlas | Undergrads, judges | Card grid by hardware family, filters (fuel, solid/gas/droplet, platform), detail drawer with DOI |\n| 2 | Habitat Relevance Rank | Engineers, professors triaging | Sortable ranked table, per-criterion score bars, weight sliders |\n\n## Advanced\n\nMore ideas soon.\n',
-    '/Demo/docs/guide.md': '---\ntitle: Guide\ntags: [docs, folio]\n---\n# Guide\n\n## Code\n\n```js\nconst answer = 42;\nfunction hello(name) { return `hi ${name}`; }\n```\n\n## Tables\n\n| Key | Value |\n|:--|--:|\n| a | 1 |\n\n## Quotes\n\n> Good ideas deserve room.\n',
-    '/Demo/notes/2026-11-06.md': '# Daily note\n\nNothing yet.\n',
+    '/Notebook/Welcome.md': '# Welcome to Folio\n\nThis is a **live-edit reader**. Everything you see is rendered Markdown — and every block is editable. Go on: *click this paragraph.*\n\n> [!TIP]\n> Press **Esc** (or click somewhere else) to put the block back. Your Markdown is still plain text underneath.\n\n## Try a few things\n\n- [x] Open Folio\n- [ ] Tick this box — it rewrites the Markdown for you\n- [ ] Press `⌘P` and jump to **Roadmap**\n- [ ] Switch to Split view with the buttons at the top right\n\n## Links between notes\n\nNotes link to each other like a wiki: read the [roadmap](Projects/Roadmap.md), skim the [reading list](Reading/Reading%20list.md), or jump to a [section](Projects/Roadmap.md#later).\n\n---\n\nNothing here leaves your browser. In the Mac app, nothing leaves your Mac.\n',
+    '/Notebook/Projects/Roadmap.md': '---\ntitle: Roadmap\nstatus: in progress\nowner: you\n---\n# Roadmap\n\n## Now\n\n| Area | What | Why it matters |\n|---|---|---|\n| Reading | Typography presets, reading column width, four themes | Long documents should feel like a book, not a terminal |\n| Editing | Click-to-edit blocks, list continuation, ⌘B / ⌘I / ⌘K | Fix a typo without leaving the page |\n| Workspaces | Folders + open tabs, saved per workspace | Jump between projects in one keystroke |\n\n## Next\n\n- [x] Command palette\n- [x] Workspace search with regex\n- [ ] Math and diagrams\n- [ ] Export to PDF\n\n## Later\n\n```rust\nfn main() {\n    let notes = folio::open("~/Notebook")?;\n    println!("{} notes, zero lock-in", notes.len());\n}\n```\n',
+    '/Notebook/Reading/Reading list.md': '# Reading list\n\n> Good ideas deserve a little room to breathe.\n\n1. *The Design of Everyday Things* — Don Norman\n2. *How Buildings Learn* — Stewart Brand\n3. *A Pattern Language* — Christopher Alexander\n\n## Notes\n\nKeep quotes in blockquotes, and summaries short. Folio’s outline (⇧⌘U) turns these headings into a table of contents.\n',
+    '/Notebook/Journal/2026-11-06.md': '# Friday, 6 November\n\n- Shipped the landing page\n- Coffee with the team\n\n> [!NOTE]\n> Daily notes are just files. Back them up any way you like.\n',
   };
   const save = () => localStorage.setItem(KEY, JSON.stringify(fs));
   const now = () => Date.now() / 1000;
   const dirs = () => { const set = new Set(); for (const f of Object.keys(fs)) { let d = dirname(f); while (d !== '/') { set.add(d); d = dirname(d); } } (mock.dirs ||= new Set()).forEach(x => set.add(x)); return set; };
   switch (action) {
     case 'ready': return Promise.resolve({paths: [], home: '/Users/you'});
-    case 'loadState': return Promise.resolve(localStorage.getItem('folio-mock-state') || JSON.stringify({workspaces: [{id: 'demo', name: 'Demo', roots: ['/Demo'], tabs: [{key: '/Demo/docs/ideas.md', path: '/Demo/docs/ideas.md', mode: 'read'}], expanded: ['/Demo', '/Demo/docs']}], current: 'demo', recent: []}));
-    case 'saveState': localStorage.setItem('folio-mock-state', p.json); return Promise.resolve(true);
+    case 'loadState': return Promise.resolve(localStorage.getItem('folio-demo-state-v2') || JSON.stringify({workspaces: [
+      {id: 'demo', name: 'Notebook', roots: ['/Notebook'], tabs: [{key: '/Notebook/Welcome.md', path: '/Notebook/Welcome.md', mode: 'read'}, {key: '/Notebook/Projects/Roadmap.md', path: '/Notebook/Projects/Roadmap.md', mode: 'read'}], active: '/Notebook/Welcome.md', expanded: ['/Notebook', '/Notebook/Projects']},
+      {id: 'work', name: 'Client work', roots: [], tabs: [], opened: Date.now() - 86400000 * 2}], current: 'demo', recent: [], settings: {sidebarWidth: 240}}));
+    case 'saveState': localStorage.setItem('folio-demo-state-v2', p.json); return Promise.resolve(true);
     case 'tree': {
       const all = dirs();
       const build = path => ({name: basename(path), path, dir: true, children: [

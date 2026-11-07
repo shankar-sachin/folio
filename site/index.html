@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Folio — the live-edit Markdown reader for Mac</title>
+<meta name="description" content="Folio renders your Markdown beautifully, then lets you click any paragraph to edit it in place. Workspaces, VS Code-style tabs, search, and zero cloud. Free for Apple Silicon Macs.">
+<meta name="theme-color" content="#0d0e12">
+<meta property="og:title" content="Folio — the live-edit Markdown reader for Mac">
+<meta property="og:description" content="Read Markdown like a book. Click any block to edit it in place.">
+<meta property="og:image" content="/assets/icon-512.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="/" aria-label="Folio home"><img src="/assets/favicon.png" alt="" width="28" height="28"><span>Folio</span></a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#live">Live editing</a>
+    <a href="#features">Features</a>
+    <a href="#install">Install</a>
+  </nav>
+  <a class="btn btn-small" href="/download">Download</a>
+</header>
+
+<main>
+  <section class="hero">
+    <p class="eyebrow"><span class="dot"></span> Folio 2.0 for macOS</p>
+    <h1>Markdown that reads like a book<br><em>and edits like a thought.</em></h1>
+    <p class="lede">Folio renders your notes beautifully, then lets you click any paragraph, heading, list or table and edit its Markdown right where it sits. Press <kbd>Esc</kbd> and it’s a page again.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="/download" data-download>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg>
+        Download for Mac
+      </a>
+      <a class="btn btn-ghost" href="#live">See how it works</a>
+    </div>
+    <p class="meta">Free · Apple Silicon · macOS 13 or later · 7.5 MB · v2.0.0</p>
+
+    <figure class="window" aria-label="Folio app window showing a document being edited in place">
+      <div class="win-bar">
+        <span class="lights"><i></i><i></i><i></i></span>
+        <span class="win-search">⌘P  Notebook</span>
+        <span></span>
+      </div>
+      <div class="win-body">
+        <aside class="win-side">
+          <div class="side-h">Explorer</div>
+          <div class="tree">
+            <div class="t-row t-dir">▾ Notebook</div>
+            <div class="t-row t-dir t-d1">▾ Projects</div>
+            <div class="t-row t-d2 t-md">Roadmap.md</div>
+            <div class="t-row t-dir t-d1">▸ Reading</div>
+            <div class="t-row t-d1 t-md t-on">Welcome.md</div>
+            <div class="t-row t-d1 t-md">Journal.md</div>
+          </div>
+        </aside>
+        <div class="win-main">
+          <div class="tabs">
+            <span class="tab on"><b class="md">M↓</b> Welcome.md</span>
+            <span class="tab"><b class="md">M↓</b> <i>Roadmap.md</i></span>
+            <span class="tab"><b class="md">M↓</b> Reading list.md</span>
+          </div>
+          <article class="doc">
+            <h2>Welcome to Folio</h2>
+            <p>Everything here is rendered Markdown, and every block can be edited. Go on, click a paragraph.</p>
+            <div class="swap" aria-hidden="true">
+              <div class="swap-read">
+                <h3>Try a few things</h3>
+                <ul class="tasks">
+                  <li class="done"><span class="box on"></span>Open Folio</li>
+                  <li><span class="box"></span>Tick this box, and the Markdown updates itself</li>
+                  <li><span class="box"></span>Press <code>⌘P</code> and jump to <strong>Roadmap</strong></li>
+                </ul>
+              </div>
+              <div class="swap-edit">
+<pre><span class="m">###</span> Try a few things
+
+<span class="m">-</span> <span class="k">[x]</span> Open Folio
+<span class="m">-</span> <span class="k">[ ]</span> Tick this box, and the Markdown updates itself
+<span class="m">-</span> <span class="k">[ ]</span> Press <span class="c">`⌘P`</span> and jump to <span class="b">**Roadmap**</span><span class="caret"></span></pre>
+                <div class="edit-hint"><span>Markdown</span><span><kbd>Esc</kbd> done</span></div>
+              </div>
+            </div>
+            <table>
+              <thead><tr><th>Area</th><th>What</th><th>Why it matters</th></tr></thead>
+              <tbody>
+                <tr><td>Reading</td><td>Typography, themes, column width</td><td>Long docs should feel like a book</td></tr>
+                <tr><td>Editing</td><td>Click-to-edit blocks</td><td>Fix a typo without leaving the page</td></tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+      </div>
+      <div class="win-status"><span>◆ Notebook</span><span>✓ Saved</span><span class="grow"></span><span>412 words · 2 min read</span><span>Live</span></div>
+    </figure>
+  </section>
+
+  <section id="live" class="section">
+    <h2 class="h2">Click. Edit. <em>Esc.</em></h2>
+    <p class="sub">Most Markdown apps make you choose between a raw editor and a pretty preview. Folio is one surface.</p>
+    <ol class="steps">
+      <li><span class="n">1</span><h3>Read</h3><p>Open a file or a whole folder. Headings, tables, callouts, code and task lists render the way they deserve to.</p></li>
+      <li><span class="n">2</span><h3>Click</h3><p>Click any block and it becomes its Markdown, right in place, with your caret where you clicked.</p></li>
+      <li><span class="n">3</span><h3>Done</h3><p>Press <kbd>Esc</kbd> or click away, and it renders again. Your file is still plain Markdown, ready for Git, Obsidian or anything else.</p></li>
+    </ol>
+  </section>
+
+  <section id="features" class="section">
+    <h2 class="h2">A real workbench, <em>not a viewer.</em></h2>
+    <div class="grid">
+      <article class="card"><h3>Workspaces</h3><p>Group folders into named workspaces that remember their open tabs. Switch projects with <kbd>⌃⌘R</kbd>.</p></article>
+      <article class="card"><h3>Tabs that behave</h3><p>VS Code-style tabs with preview tabs, drag to reorder, middle-click to close and reopen-closed.</p></article>
+      <article class="card"><h3>Find anything</h3><p><kbd>⌘P</kbd> for files, <kbd>@</kbd> for headings, <kbd>⇧⌘P</kbd> for every command, plus regex search across the workspace.</p></article>
+      <article class="card"><h3>Three modes</h3><p>Live, Split with synced scrolling, or Source with a highlighted Markdown editor. Switch with <kbd>⌘1</kbd> <kbd>⌘2</kbd> <kbd>⌘3</kbd>.</p></article>
+      <article class="card"><h3>Built for reading</h3><p>Four themes, including true-black OLED and warm Paper. Choose New York, Charter or Iowan, and set your column width.</p></article>
+      <article class="card"><h3>Tables that breathe</h3><p>Wide tables scroll instead of crushing words into one-letter columns. Callouts, front matter and 30+ code languages too.</p></article>
+      <article class="card"><h3>Live with your files</h3><p>Folio notices edits from other apps, reloads cleanly and warns before anything could be overwritten.</p></article>
+      <article class="card"><h3>Yours, offline</h3><p>No account, no telemetry, no network calls. Remote images stay blocked until you allow them. Built with Rust and Tauri.</p></article>
+    </div>
+  </section>
+
+  <section id="install" class="section install">
+    <div class="install-card">
+      <img src="/assets/icon-512.png" alt="Folio app icon" width="112" height="112">
+      <div>
+        <h2 class="h2">Get Folio</h2>
+        <p class="sub">Free for Apple Silicon Macs running macOS 13 Ventura or later.</p>
+        <a class="btn btn-primary" href="/download" data-download>Download Folio 2.0.0 (.dmg, 7.5 MB)</a>
+        <ol class="howto">
+          <li>Open the DMG and drag <b>Folio</b> into <b>Applications</b>.</li>
+          <li>The first time you open it, macOS may warn that the developer can’t be verified, because Folio isn’t notarized yet. Go to <b>System Settings → Privacy &amp; Security</b> and choose <b>Open Anyway</b>.</li>
+          <li>Open a folder with <kbd>⌥⌘O</kbd> and start reading.</li>
+        </ol>
+        <details class="checksum"><summary>SHA-256 checksum</summary><code>65ca5ef6bd5745967e3ea362e41a1a5988b6fe44f581a645a74bb43512814897</code></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span><img src="/assets/favicon.png" alt="" width="18" height="18"> Folio</span>
+  <span>Made for people who live in Markdown.</span>
+</footer>
+
+</body>
+</html>
