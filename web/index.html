@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src data: mdasset: https:; font-src 'self'; connect-src ipc: http://ipc.localhost;">
+<title>Folio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="titlebar" data-tauri-drag-region>
+    <div class="tb-left" data-tauri-drag-region>
+      <button class="tb-btn" id="tb-sidebar" title="Toggle Sidebar (⌘\)"></button>
+    </div>
+    <button id="command-center" title="Go to File (⌘P)"><span class="cc-icon"></span><span id="cc-label">Folio</span><kbd>⌘P</kbd></button>
+    <div class="tb-right" data-tauri-drag-region>
+      <button class="tb-btn" id="tb-mode" title="Toggle Preview (⇧⌘V)"></button>
+      <button class="tb-btn" id="tb-theme" title="Theme (⌥⌘T)"></button>
+    </div>
+  </header>
+  <div id="workbench">
+    <nav id="activitybar" aria-label="Views">
+      <div class="ab-top"></div>
+      <div class="ab-bottom"></div>
+    </nav>
+    <aside id="sidebar">
+      <section class="view" data-view="explorer">
+        <div class="view-head"><span>Explorer</span><div class="view-actions" id="explorer-actions"></div></div>
+        <div class="view-body" id="explorer-body" tabindex="0"></div>
+      </section>
+      <section class="view" data-view="search">
+        <div class="view-head"><span>Search</span><div class="view-actions" id="search-actions"></div></div>
+        <div class="search-box">
+          <div class="field"><input id="search-input" placeholder="Search workspace" spellcheck="false" autocomplete="off"><div class="toggles"><button data-opt="case" title="Match Case">Aa</button><button data-opt="word" title="Match Whole Word"><u>ab</u></button><button data-opt="regex" title="Use Regular Expression">.*</button></div></div>
+          <div id="search-summary"></div>
+        </div>
+        <div class="view-body" id="search-results"></div>
+      </section>
+      <section class="view" data-view="outline">
+        <div class="view-head"><span>Outline</span><div class="view-actions" id="outline-actions"></div></div>
+        <div class="search-box"><div class="field"><input id="outline-filter" placeholder="Filter headings" spellcheck="false" autocomplete="off"></div></div>
+        <div class="view-body" id="outline-body"></div>
+      </section>
+      <section class="view" data-view="workspaces">
+        <div class="view-head"><span>Workspaces</span><div class="view-actions" id="workspaces-actions"></div></div>
+        <div class="view-body" id="workspaces-body"></div>
+      </section>
+    </aside>
+    <div id="sash" role="separator" aria-label="Resize sidebar"></div>
+    <main id="editor">
+      <div id="tabbar"><div id="tabs" role="tablist" data-tauri-drag-region></div><div id="editor-actions"></div></div>
+      <div id="breadcrumbs"></div>
+      <div id="docs"></div>
+      <div id="findwidget" hidden>
+        <div class="field"><input id="find-input" placeholder="Find" spellcheck="false" autocomplete="off"><div class="toggles"><button data-opt="case" title="Match Case">Aa</button><button data-opt="word" title="Match Whole Word"><u>ab</u></button><button data-opt="regex" title="Use Regular Expression">.*</button></div></div>
+        <span id="find-count">No results</span>
+        <button id="find-prev" class="icon-btn" title="Previous Match (⇧↵)"></button>
+        <button id="find-next" class="icon-btn" title="Next Match (↵)"></button>
+        <button id="find-close" class="icon-btn" title="Close (Esc)"></button>
+      </div>
+      <div id="welcome"></div>
+    </main>
+  </div>
+  <footer id="statusbar"><div class="sb-left"></div><div class="sb-right"></div></footer>
+</div>
+<div id="palette" hidden><div class="pal-box"><input id="pal-input" spellcheck="false" autocomplete="off"><div id="pal-list" role="listbox"></div></div></div>
+<div id="menu" hidden></div>
+<div id="modal" hidden></div>
+<div id="toasts"></div>
+<script src="bundle.js"></script>
+</body>
+</html>
